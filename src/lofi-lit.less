@@ -1,0 +1,143 @@
+#lofi-lit(
+  @theme-color-bg-default: #222;
+  @theme-color-fg-default: #CCC;
+  @theme-color-bg-primary: darkblue;
+  @theme-color-fg-primary: skyblue;
+  @theme-color-bg-success: green;
+  @theme-color-fg-success: limegreen;
+  @theme-color-bg-warning: gold;
+  @theme-color-fg-warning: lightyellow;
+  @theme-color-bg-error: darkred;
+  @theme-color-fg-error: pink;
+  @light-percentage: 16%;
+  @lighter-percentage: 32%;
+  @lightest-percentage: 48%;
+  @dark-percentage: 16%;
+  @darker-percentage: 32%;
+  @darkest-percentage: 48%;
+  @theme-font-family: Consolas, menlo, Courier;
+) {
+  .make-color-table(@bg, @fg) {
+    --theme-color-bg-gradient-none: @bg;
+    --theme-color-fg-gradient-none: @fg;
+
+    --theme-color-bg-gradient-dark: darken(@bg, @dark-percentage, relative);
+    --theme-color-bg-gradient-darker: darken(@bg, @darker-percentage, relative);
+    --theme-color-bg-gradient-darkest: darken(@bg, @darkest-percentage, relative);
+
+    --theme-color-fg-gradient-dark: darken(@fg, @dark-percentage, relative);
+    --theme-color-fg-gradient-darker: darken(@fg, @darker-percentage, relative);
+    --theme-color-fg-gradient-darkest: darken(@fg, @darkest-percentage, relative);
+
+    --theme-color-bg-gradient-light: lighten(@bg, @light-percentage, relative);
+    --theme-color-bg-gradient-lighter: lighten(@bg, @lighter-percentage, relative);
+    --theme-color-bg-gradient-lightest: lighten(@bg, @lightest-percentage, relative);
+
+    --theme-color-fg-gradient-light: lighten(@fg, @light-percentage, relative);
+    --theme-color-fg-gradient-lighter: lighten(@fg, @lighter-percentage, relative);
+    --theme-color-fg-gradient-lightest: lighten(@fg, @lightest-percentage, relative);
+  }
+
+  --theme-color-bg-default: @theme-color-bg-default;
+  --theme-color-bg-primary: @theme-color-bg-primary;
+  --theme-color-bg-success: @theme-color-bg-success;
+  --theme-color-bg-warning: @theme-color-bg-warning;
+  --theme-color-bg-error: @theme-color-bg-error;
+
+  --theme-color-fg-default: @theme-color-fg-default;
+  --theme-color-fg-primary: @theme-color-fg-primary;
+  --theme-color-fg-success: @theme-color-fg-success;
+  --theme-color-fg-warning: @theme-color-fg-warning;
+  --theme-color-fg-error: @theme-color-fg-error;
+
+  .make-color-table(@theme-color-bg-default, @theme-color-fg-default);
+
+  .primary {
+    .make-color-table(@theme-color-bg-primary, @theme-color-fg-primary);
+  }
+
+  .success {
+    .make-color-table(@theme-color-bg-success, @theme-color-fg-success);
+  }
+
+  .warning {
+    .make-color-table(@theme-color-bg-warning, @theme-color-fg-warning);
+  }
+
+  .error {
+    .make-color-table(@theme-color-bg-error, @theme-color-fg-error);
+  }
+
+  --theme-color-bg: var(--theme-color-bg-gradient-none);
+  --theme-color-fg: var(--theme-color-fg-gradient-none);
+
+  .light-bg {
+    --theme-color-bg: var(--theme-color-bg-gradient-light);
+  }
+  .lighter-bg {
+    --theme-color-bg: var(--theme-color-bg-gradient-lighter);
+  }
+  .lightest-bg {
+    --theme-color-bg: var(--theme-color-bg-gradient-lightest);
+  }
+  .dark-bg {
+    --theme-color-bg: var(--theme-color-bg-gradient-dark);
+  }
+  .darker-bg {
+    --theme-color-bg: var(--theme-color-bg-gradient-darker);
+  }
+  .darkest-bg {
+    --theme-color-bg: var(--theme-color-bg-gradient-darkest);
+  }
+
+  .light-fg {
+    --theme-color-fg: var(--theme-color-fg-gradient-light);
+  }
+  .lighter-fg {
+    --theme-color-fg: var(--theme-color-fg-gradient-lighter);
+  }
+  .lightest-fg {
+    --theme-color-fg: var(--theme-color-fg-gradient-lightest);
+  }
+  .dark-fg {
+    --theme-color-fg: var(--theme-color-fg-gradient-dark);
+  }
+  .darker-fg {
+    --theme-color-fg: var(--theme-color-fg-gradient-darker);
+  }
+  .darkest-fg {
+    --theme-color-fg: var(--theme-color-fg-gradient-darkest);
+  }
+
+  .light {
+    --theme-color-bg: var(--theme-color-bg-gradient-light);
+    --theme-color-fg: var(--theme-color-fg-gradient-light);
+  }
+  .lighter {
+    --theme-color-bg: var(--theme-color-bg-gradient-lighter);
+    --theme-color-fg: var(--theme-color-fg-gradient-lighter);
+  }
+  .lightest {
+    --theme-color-bg: var(--theme-color-bg-gradient-lightest);
+    --theme-color-fg: var(--theme-color-fg-gradient-lightest);
+  }
+  .dark {
+    --theme-color-bg: var(--theme-color-bg-gradient-dark);
+    --theme-color-fg: var(--theme-color-fg-gradient-dark);
+  }
+  .darker {
+    --theme-color-bg: var(--theme-color-bg-gradient-darker);
+    --theme-color-fg: var(--theme-color-fg-gradient-darker);
+  }
+  .darkest {
+    --theme-color-bg: var(--theme-color-bg-gradient-darkest);
+    --theme-color-fg: var(--theme-color-fg-gradient-darkest);
+  }
+
+  font-family: @theme-font-family;
+  color: var(--theme-color-fg);
+}
+
+.lofi-lit.base {
+  #lofi-lit();
+}
