@@ -1,4 +1,4 @@
-#lofi-lit(
+#lofi-lit-theme(
   @theme-color-bg-default: #222;
   @theme-color-fg-default: #CCC;
   @theme-color-bg-primary: darkblue;
@@ -16,26 +16,28 @@
   @darker-percentage: 32%;
   @darkest-percentage: 48%;
   @theme-font-family: Consolas, menlo, Courier;
+  @theme-border-size: 2px;
+  @theme-border-radius: 8px;
 ) {
-  .make-color-table(@bg, @fg) {
-    --theme-color-bg-gradient-none: @bg;
-    --theme-color-fg-gradient-none: @fg;
+  .make-color-table(@bg; @fg; @categoryName: default;) {
+    --theme-color-bg-@{categoryName}-gradient-none: @bg;
+    --theme-color-fg-@{categoryName}-gradient-none: @fg;
 
-    --theme-color-bg-gradient-dark: darken(@bg, @dark-percentage, relative);
-    --theme-color-bg-gradient-darker: darken(@bg, @darker-percentage, relative);
-    --theme-color-bg-gradient-darkest: darken(@bg, @darkest-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-dark: darken(@bg, @dark-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-darker: darken(@bg, @darker-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-darkest: darken(@bg, @darkest-percentage, relative);
 
-    --theme-color-fg-gradient-dark: darken(@fg, @dark-percentage, relative);
-    --theme-color-fg-gradient-darker: darken(@fg, @darker-percentage, relative);
-    --theme-color-fg-gradient-darkest: darken(@fg, @darkest-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-dark: darken(@fg, @dark-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-darker: darken(@fg, @darker-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-darkest: darken(@fg, @darkest-percentage, relative);
 
-    --theme-color-bg-gradient-light: lighten(@bg, @light-percentage, relative);
-    --theme-color-bg-gradient-lighter: lighten(@bg, @lighter-percentage, relative);
-    --theme-color-bg-gradient-lightest: lighten(@bg, @lightest-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-light: lighten(@bg, @light-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-lighter: lighten(@bg, @lighter-percentage, relative);
+    --theme-color-bg-@{categoryName}-gradient-lightest: lighten(@bg, @lightest-percentage, relative);
 
-    --theme-color-fg-gradient-light: lighten(@fg, @light-percentage, relative);
-    --theme-color-fg-gradient-lighter: lighten(@fg, @lighter-percentage, relative);
-    --theme-color-fg-gradient-lightest: lighten(@fg, @lightest-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-light: lighten(@fg, @light-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-lighter: lighten(@fg, @lighter-percentage, relative);
+    --theme-color-fg-@{categoryName}-gradient-lightest: lighten(@fg, @lightest-percentage, relative);
   }
 
   --theme-color-bg-default: @theme-color-bg-default;
@@ -50,23 +52,14 @@
   --theme-color-fg-warning: @theme-color-fg-warning;
   --theme-color-fg-error: @theme-color-fg-error;
 
+  --theme-border-size: @theme-border-size;
+  --theme-border-radius: @theme-border-radius;
+
   .make-color-table(@theme-color-bg-default, @theme-color-fg-default);
-
-  .primary {
-    .make-color-table(@theme-color-bg-primary, @theme-color-fg-primary);
-  }
-
-  .success {
-    .make-color-table(@theme-color-bg-success, @theme-color-fg-success);
-  }
-
-  .warning {
-    .make-color-table(@theme-color-bg-warning, @theme-color-fg-warning);
-  }
-
-  .error {
-    .make-color-table(@theme-color-bg-error, @theme-color-fg-error);
-  }
+  .make-color-table(@theme-color-bg-primary, @theme-color-fg-primary, "primary");
+  .make-color-table(@theme-color-bg-success, @theme-color-fg-success, "success");
+  .make-color-table(@theme-color-bg-warning, @theme-color-fg-warning, "warning");
+  .make-color-table(@theme-color-bg-error, @theme-color-fg-error, "error");
 
   --theme-color-bg: var(--theme-color-bg-gradient-none);
   --theme-color-fg: var(--theme-color-fg-gradient-none);
@@ -134,10 +127,23 @@
     --theme-color-fg: var(--theme-color-fg-gradient-darkest);
   }
 
+  .bg {
+    background-color: var(--theme-color-bg);
+  }
+  .fg {
+    color: var(--theme-color-fg);
+  }
+  .bordered {
+    border: var(--theme-border-size) solid var(--theme-color-fg);
+  }
+  .rounded {
+    border-radius: var(--theme-border-size);
+  }
+
+  box-sizing: border-box;
   font-family: @theme-font-family;
-  color: var(--theme-color-fg);
 }
 
-.lofi-lit.base {
-  #lofi-lit();
+.lofi-lit-theme {
+  #lofi-lit-theme();
 }

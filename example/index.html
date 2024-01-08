@@ -1,8 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link rel="stylesheet" href="../src/base.less" />
+    <link rel="stylesheet" href="./example.less" />
     <script type="module" src="./example.ts"></script>
   </head>
-  <body class="lofi-lit base"></body>
+  <body class="lofi-lit-theme dark-theme">
+    <div class="bg dark-bg fg primary">just a div</div>
+    <lofi-base dark-fg bg darkBg>
+      <h1>hmm</h1>
+    </lofi-base>
+  </body>
 </html>
