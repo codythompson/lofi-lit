@@ -19,25 +19,104 @@
   @theme-border-size: 2px;
   @theme-border-radius: 8px;
 ) {
-  .make-color-table(@bg; @fg; @categoryName: default;) {
-    --theme-color-bg-@{categoryName}-gradient-none: @bg;
-    --theme-color-fg-@{categoryName}-gradient-none: @fg;
+  .make-color-table(@bg, @fg) {
+    --theme-color-bg-gradient-none: @bg;
+    --theme-color-fg-gradient-none: @fg;
 
-    --theme-color-bg-@{categoryName}-gradient-dark: darken(@bg, @dark-percentage, relative);
-    --theme-color-bg-@{categoryName}-gradient-darker: darken(@bg, @darker-percentage, relative);
-    --theme-color-bg-@{categoryName}-gradient-darkest: darken(@bg, @darkest-percentage, relative);
+    --theme-color-bg-gradient-dark: darken(@bg, @dark-percentage, relative);
+    --theme-color-bg-gradient-darker: darken(@bg, @darker-percentage, relative);
+    --theme-color-bg-gradient-darkest: darken(@bg, @darkest-percentage, relative);
 
-    --theme-color-fg-@{categoryName}-gradient-dark: darken(@fg, @dark-percentage, relative);
-    --theme-color-fg-@{categoryName}-gradient-darker: darken(@fg, @darker-percentage, relative);
-    --theme-color-fg-@{categoryName}-gradient-darkest: darken(@fg, @darkest-percentage, relative);
+    --theme-color-fg-gradient-dark: darken(@fg, @dark-percentage, relative);
+    --theme-color-fg-gradient-darker: darken(@fg, @darker-percentage, relative);
+    --theme-color-fg-gradient-darkest: darken(@fg, @darkest-percentage, relative);
 
-    --theme-color-bg-@{categoryName}-gradient-light: lighten(@bg, @light-percentage, relative);
-    --theme-color-bg-@{categoryName}-gradient-lighter: lighten(@bg, @lighter-percentage, relative);
-    --theme-color-bg-@{categoryName}-gradient-lightest: lighten(@bg, @lightest-percentage, relative);
+    --theme-color-bg-gradient-light: lighten(@bg, @light-percentage, relative);
+    --theme-color-bg-gradient-lighter: lighten(@bg, @lighter-percentage, relative);
+    --theme-color-bg-gradient-lightest: lighten(@bg, @lightest-percentage, relative);
 
-    --theme-color-fg-@{categoryName}-gradient-light: lighten(@fg, @light-percentage, relative);
-    --theme-color-fg-@{categoryName}-gradient-lighter: lighten(@fg, @lighter-percentage, relative);
-    --theme-color-fg-@{categoryName}-gradient-lightest: lighten(@fg, @lightest-percentage, relative);
+    --theme-color-fg-gradient-light: lighten(@fg, @light-percentage, relative);
+    --theme-color-fg-gradient-lighter: lighten(@fg, @lighter-percentage, relative);
+    --theme-color-fg-gradient-lightest: lighten(@fg, @lightest-percentage, relative);
+
+    .make-bg-shade(@shadeName) {
+      --theme-color-bg: var(--theme-color-bg-@{shadeName});
+      background-color: var(--theme-color-bg);
+    }
+    .make-fg-shade(@shadeName) {
+      --theme-color-fg: var(--theme-color-fg-@{shadeName});
+      color: var(--theme-color-fg);
+    }
+
+    .bg {
+      .make-bg-shade(none);
+    }
+    .light-bg {
+      .make-bg-shade(light);
+    }
+    .lighter-bg {
+      .make-bg-shade(lighter);
+    }
+    .lightest-bg {
+      .make-bg-shade(lightest);
+    }
+    .dark-bg {
+      .make-bg-shade(dark);
+    }
+    .darkest-bg {
+      .make-bg-shade(darkest);
+    }
+
+    .fg {
+      .make-fg-shade(none);
+    }
+    .light-fg {
+      .make-fg-shade(light);
+    }
+    .lighter-fg {
+      .make-fg-shade(lighter);
+    }
+    .lightest-fg {
+      .make-fg-shade(lightest);
+    }
+    .dark-fg {
+      .make-fg-shade(dark);
+    }
+    .darker-fg {
+      .make-fg-shade(darker);
+    }
+    .darkest-fg {
+      .make-fg-shade(darkest);
+    }
+
+    .shaded {
+      .make-bg-shade(none);
+      .make-fg-shade(none);
+    }
+    .light {
+      .make-bg-shade(light);
+      .make-fg-shade(light);
+    }
+    .lighter {
+      .make-bg-shade(lighter);
+      .make-fg-shade(lighter);
+    }
+    .lightest {
+      .make-bg-shade(lightest);
+      .make-fg-shade(lightest);
+    }
+    .dark {
+      .make-bg-shade(dark);
+      .make-fg-shade(dark);
+    }
+    .darker {
+      .make-bg-shade(darker);
+      .make-fg-shade(darker);
+    }
+    .darkest {
+      .make-bg-shade(darkest);
+      .make-fg-shade(darkest);
+    }
   }
 
   --theme-color-bg-default: @theme-color-bg-default;
@@ -56,83 +135,20 @@
   --theme-border-radius: @theme-border-radius;
 
   .make-color-table(@theme-color-bg-default, @theme-color-fg-default);
-  .make-color-table(@theme-color-bg-primary, @theme-color-fg-primary, "primary");
-  .make-color-table(@theme-color-bg-success, @theme-color-fg-success, "success");
-  .make-color-table(@theme-color-bg-warning, @theme-color-fg-warning, "warning");
-  .make-color-table(@theme-color-bg-error, @theme-color-fg-error, "error");
 
-  --theme-color-bg: var(--theme-color-bg-gradient-none);
-  --theme-color-fg: var(--theme-color-fg-gradient-none);
-
-  .light-bg {
-    --theme-color-bg: var(--theme-color-bg-gradient-light);
+  .primary {
+    .make-color-table(@theme-color-bg-primary, @theme-color-fg-primary);
   }
-  .lighter-bg {
-    --theme-color-bg: var(--theme-color-bg-gradient-lighter);
+  .success {
+    .make-color-table(@theme-color-bg-success, @theme-color-fg-success);
   }
-  .lightest-bg {
-    --theme-color-bg: var(--theme-color-bg-gradient-lightest);
+  .warning {
+    .make-color-table(@theme-color-bg-warning, @theme-color-fg-warning);
   }
-  .dark-bg {
-    --theme-color-bg: var(--theme-color-bg-gradient-dark);
-  }
-  .darker-bg {
-    --theme-color-bg: var(--theme-color-bg-gradient-darker);
-  }
-  .darkest-bg {
-    --theme-color-bg: var(--theme-color-bg-gradient-darkest);
+  .error {
+    .make-color-table(@theme-color-bg-error, @theme-color-fg-error);
   }
 
-  .light-fg {
-    --theme-color-fg: var(--theme-color-fg-gradient-light);
-  }
-  .lighter-fg {
-    --theme-color-fg: var(--theme-color-fg-gradient-lighter);
-  }
-  .lightest-fg {
-    --theme-color-fg: var(--theme-color-fg-gradient-lightest);
-  }
-  .dark-fg {
-    --theme-color-fg: var(--theme-color-fg-gradient-dark);
-  }
-  .darker-fg {
-    --theme-color-fg: var(--theme-color-fg-gradient-darker);
-  }
-  .darkest-fg {
-    --theme-color-fg: var(--theme-color-fg-gradient-darkest);
-  }
-
-  .light {
-    --theme-color-bg: var(--theme-color-bg-gradient-light);
-    --theme-color-fg: var(--theme-color-fg-gradient-light);
-  }
-  .lighter {
-    --theme-color-bg: var(--theme-color-bg-gradient-lighter);
-    --theme-color-fg: var(--theme-color-fg-gradient-lighter);
-  }
-  .lightest {
-    --theme-color-bg: var(--theme-color-bg-gradient-lightest);
-    --theme-color-fg: var(--theme-color-fg-gradient-lightest);
-  }
-  .dark {
-    --theme-color-bg: var(--theme-color-bg-gradient-dark);
-    --theme-color-fg: var(--theme-color-fg-gradient-dark);
-  }
-  .darker {
-    --theme-color-bg: var(--theme-color-bg-gradient-darker);
-    --theme-color-fg: var(--theme-color-fg-gradient-darker);
-  }
-  .darkest {
-    --theme-color-bg: var(--theme-color-bg-gradient-darkest);
-    --theme-color-fg: var(--theme-color-fg-gradient-darkest);
-  }
-
-  .bg {
-    background-color: var(--theme-color-bg);
-  }
-  .fg {
-    color: var(--theme-color-fg);
-  }
   .bordered {
     border: var(--theme-border-size) solid var(--theme-color-fg);
   }
